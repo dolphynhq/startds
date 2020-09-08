@@ -1,0 +1,58 @@
+class Model:
+
+    def __init__(self, hyperparameters={}, model=None, config={}):
+        # The actual learner used to generate predictions.
+        self.model = model
+        self.hyperparamaters = hyperparameters
+        self.config = config
+
+    def train(self, X_train, y_train, X_dev, y_dev, X_test, y_test):
+        '''
+        Fit a model on a training dataset.
+        '''
+        return None
+
+    def predict(self, input_features):
+        '''
+        Return a prediction based on a model and input data (data is formatted).
+        '''
+        return None
+
+    def predict_batch(self, batch_input_features):
+        '''
+        Predicts a batch of data at once.
+        '''
+        return None
+
+    def transform_data(self, input_data):
+        '''
+        Transform clean input data. Create features that can be fed to the model directly.
+        '''
+        return None
+    
+    def clean_data(self, input_data):
+        '''
+        Clean raw input data. Impute missing values. Remove constant columns. Many other cleaning steps possible
+        depending on data.
+        '''
+        return None
+    
+    def connect_data(self, config):
+        '''
+        Access raw data. Could be on S3, GCS, Postgres, MongoDB or something else.
+        '''
+        return None
+
+    def to_remote(self):
+        '''
+        Store model to S3/GCP/Azure Storage or something similar.
+        Returns a path of where model is stored.
+        '''
+        return None
+
+    def from_remote(self, path):
+        '''
+        Load a model from S3/GCP/Azure into memory. Model is stored at path.
+
+        '''
+        return None

@@ -1,0 +1,2 @@
+docker build -t fastapi .
+docker run -p 80:80 fastapi

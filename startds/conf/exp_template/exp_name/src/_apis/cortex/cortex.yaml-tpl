@@ -1,0 +1,7 @@
+# cortex.yaml
+
+- name: text-generator
+  kind: RealtimeAPI
+  predictor:
+    type: python
+    path: main.py

@@ -1,0 +1,28 @@
+'''
+Add code that cleans raw data in this file
+Some common steps for cleaning data may include
+- Impute missing values
+- Fix spelling mistakes
+- Type checking
+- Splitting certain columns
+- Sanity checks (eg age can't be negative)
+- Remove duplicates
+- Filter outliers
+- Identify columns that contain a single value
+- Correct mislabeled data ( for example an orange is categorized as meat instead of fruit)
+
+Other steps that can be included here include
+- data augmentation
+- synthetic data generation
+'''
+
+import os
+from dotenv import load_dotenv, find_dotenv
+
+# find .env automagically by walking up directories until it's found
+dotenv_path = find_dotenv()
+
+# load up the entries as environment variables
+load_dotenv(dotenv_path)
+
+SAMPLE_VARIABLE = os.environ.get("SAMPLE_VARIABLE")

@@ -1,0 +1,77 @@
+from datetime import timedelta
+
+# The DAG object; we'll need this to instantiate a DAG
+from airflow import DAG
+# Operators; we need this to operate!
+from airflow.operators.bash_operator import BashOperator
+from airflow.utils.dates import days_ago
+
+# These args will get passed on to each operator
+# You can override them on a per-task basis during operator initialization
+default_args = {
+    'owner': 'airflow',
+    'depends_on_past': False,
+    'start_date': days_ago(2),
+    'email': ['airflow@example.com'],
+    'email_on_failure': False,
+    'email_on_retry': False,
+    'retries': 1,
+    'retry_delay': timedelta(minutes=5),
+    # 'queue': 'bash_queue',
+    # 'pool': 'backfill',
+    # 'priority_weight': 10,
+    # 'end_date': datetime(2016, 1, 1),
+    # 'wait_for_downstream': False,
+    # 'dag': dag,
+    # 'sla': timedelta(hours=2),
+    # 'execution_timeout': timedelta(seconds=300),
+    # 'on_failure_callback': some_function,
+    # 'on_success_callback': some_other_function,
+    # 'on_retry_callback': another_function,
+    # 'sla_miss_callback': yet_another_function,
+    # 'trigger_rule': 'all_success'
+}
+
+base_path = "Enter base path here"
+
+dag = DAG(
+    'tutorial',
+    default_args=default_args,
+    description='A simple tutorial DAG',
+    schedule_interval=timedelta(days=1),
+)
+
+t1 = BashOperator(
+    task_id='connect_data',
+    bash_command=f'python {base_path}/repo_name/src/clean/connect_data.py',
+    retries=2,
+    dag=dag,
+)
+
+t2 = BashOperator(
+    task_id='clean_data',
+    bash_command=f'python {base_path}/repo_name/src/clean/clean_data.py',
+    dag=dag,
+)
+
+t3 = BashOperator(
+    task_id='transform_data',
+    bash_command=f'python {base_path}/repo_name/src/transform/transform_data.py',
+    params={'param': ''},
+    dag=dag,
+)
+
+t4 = BashOperator(
+    task_id='setup_experiment',
+    bash_command='python {base_path}/repo_name/src/transform/setup_experiment.py',
+    dag=dag,
+)
+
+t5 = BashOperator(
+    task_id='train_model',
+    bash_command='python {base_path}/repo_name/src/train/train_model.py',
+    params={'param': ''},
+    dag=dag,
+)
+
+t1 >> t2 >> t3 >> t4 >> t5

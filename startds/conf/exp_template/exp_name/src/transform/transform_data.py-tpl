@@ -1,0 +1,15 @@
+'''
+Write all data transformations in this file
+This assumes you have already cleaned up your data
+These data transformations will then be used to create a final data set on which you can set up the experiment
+'''
+import os
+from dotenv import load_dotenv, find_dotenv
+
+# find .env automagically by walking up directories until it's found
+dotenv_path = find_dotenv()
+
+# load up the entries as environment variables
+load_dotenv(dotenv_path)
+
+SAMPLE_VARIABLE = os.environ.get("SAMPLE_VARIABLE")

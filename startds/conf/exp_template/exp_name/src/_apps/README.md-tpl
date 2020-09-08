@@ -1,0 +1,16 @@
+# How to set up ML apps
+
+StartDS currently provides 1 way of setting up ML apps : ```streamlit``` 
+
+- [Streamlit](https://github.com/streamlit/streamlit)
+
+For Streamlit apps
+
+- Write code in ```main.py```
+- Run build.sh to create a docker image and run it
+- It will be exposed on port ```8501``` of the host (when running locally, host will be ```http://localhost```)
+- Change any setting you want in the Dockerfile
+
+More open source solutions for creating ML apps will be added soon.
+
+You can always create your app from scratch. But it often takes a long time to do that. 

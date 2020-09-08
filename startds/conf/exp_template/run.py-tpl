@@ -1,0 +1,19 @@
+import subprocess
+import os
+
+
+def run():
+    curr_dir = os.getcwd()
+    exp_name = os.getcwd().split('/')[-1]
+
+    path_to_dag = f'{curr_dir}/{exp_name}/src/_orchestrate/airflow/dags/dag.py'
+
+    try:
+        subprocess.run(f'python {path_to_dag}', shell=True)
+    except Exception as e:
+        print(e)
+    
+    return
+    
+if __name__ == "__main__":
+    run()

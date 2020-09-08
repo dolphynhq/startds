@@ -1,0 +1,12 @@
+# Use the name of the root folder that you created using startds create
+# You will have to install the root folder as a package first 
+# pip install -e .
+# If you run startds env, the virtual environment created will have the package installed
+# from exp_name.src.clean.clean_data import *
+
+def func(x):
+    return x + 1
+
+
+def test_answer():
+    assert func(3) == 4

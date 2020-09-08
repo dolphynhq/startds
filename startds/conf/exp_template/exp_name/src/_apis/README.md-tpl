@@ -1,0 +1,33 @@
+# How to set up APIs
+
+StartDS provides 3 different ways to set up APIs for ML projects. All of these are open source libraries that have 
+helped data scientists around the world deploy models.
+
+- [Flask](https://github.com/pallets/flask)
+
+- [FastAPI](https://github.com/tiangolo/fastapi)
+
+- [Cortex](https://github.com/cortexlabs/cortex)
+
+For Flask APIs
+
+- Write code in ```main.py```
+- Run build.sh to create a docker image and run it
+- It will exposed on port ```8888``` of the host (when running locally, host will be ```http://localhost```)
+- Change any setting you want in the Dockerfile
+
+For FastAPI
+
+- Write code in ```main.py```
+- Run ```build.sh``` to create a docker image and run it
+- It will exposed on port ```80``` of the host (when running locally, host will be ```http://localhost```)
+- Change any setting you want in the Dockerfile
+
+For Cortex
+
+- Write code in ```main.py```
+- Write the ```requirements.txt``` for your code
+- Make sure you have installed [cortex](https://github.com/cortexlabs/cortex)
+- Run ```cortex deploy```
+
+More open source solutions for creating APIs for ML models will be added soon. (eg BentoML)

@@ -1,0 +1,12 @@
+from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+
+@app.route("/")
+def hello():
+    return "Hello, World!"
+
+@app.route("/api/serve", methods=['POST'])
+def serve():
+    data = request.json
+    return jsonify({"output" : "Not implemented"}), 200

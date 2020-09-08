@@ -1,0 +1,7 @@
+FROM python:3.7
+WORKDIR /app
+COPY . .
+RUN pip install flask gunicorn
+ENV FLASK_APP=main.py
+ENV FLASK_ENV=development
+CMD python -m flask run --host 0.0.0.0 -p 8888
