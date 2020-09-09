@@ -44,7 +44,6 @@ class Command(BaseCommand):
         '''
 
         try:
-            # subprocess.DEVNULL  subprocess.PIPE
             subprocess.run(f"{command0}; {command1}; {command2}; {commandpip}; {command_internal_1}; {command_internal_2}; {command_req}; {command3} {command_airflow}", shell=True)
         except Exception as e:
             print(e)

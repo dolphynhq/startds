@@ -33,6 +33,7 @@ class TemplateCommand(BaseCommand):
             raise Exception(e)
         
         base_name = 'exp_name'
+
         template_dir = os.path.join(list(startds.__path__)[0], 'conf', 'exp_template')
         prefix_length = len(template_dir) + 1
 
@@ -42,8 +43,16 @@ class TemplateCommand(BaseCommand):
             if relative_dir:
                 target_dir = os.path.join(top_dir, relative_dir)
                 os.makedirs(target_dir, exist_ok=True)
-
+            
+            for dirname in dirs[:]:
+                if dirname.startswith('.') or dirname == '__pycache__':
+                    dirs.remove(dirname)
+            
             for filename in files:
+                if filename.endswith(('.pyo', '.pyc', '.py.class')):
+                    # Ignore some files as they cause various breakages.
+                    continue
+
                 old_path = os.path.join(root, filename)
 
                 new_path = os.path.join(
