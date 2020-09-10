@@ -5,9 +5,12 @@ include *.md
 include *.sh
 include startds/conf/*/*tpl
 include startds/conf/exp_template/*tpl
+include startds/conf/exp_template/exp_name/*tpl
+include startds/conf/exp_template/exp_name/notebooks/*tpl
 include startds/conf/exp_template/exp_name/metadata/*tpl
 include startds/conf/exp_template/exp_name/models/*tpl
 include startds/conf/exp_template/exp_name/outputs/figures/*tpl
+include startds/conf/exp_template/exp_name/src/*tpl
 include startds/conf/exp_template/exp_name/src/*/*tpl
 include startds/conf/exp_template/exp_name/src/*/*/*tpl
 include startds/conf/exp_template/exp_name/src/*/*/*/*tpl

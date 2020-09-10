@@ -170,6 +170,8 @@ class ManagementUtility:
         parser = CommandParser(usage='%(prog)s subcommand [options] [args]')
         parser.add_argument('args', nargs='*')  # catch-all
         parser.add_argument('-f', nargs='*')  # catch-all
+        parser.add_argument('--api', nargs='*')  # catch-all
+        parser.add_argument('--mode', nargs='*')  # catch-all
         try:
             options, args = parser.parse_known_args(self.argv[2:])
         except Exception:

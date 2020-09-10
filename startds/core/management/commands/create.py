@@ -10,6 +10,5 @@ class Command(TemplateCommand):
 	missing_args_message = 'You must provide an experiment name.'
 
 	def handle(self, *args, **options):
-		# exp_name = options.pop('name')
 		exp_name = args[0]
-		super().handle(exp_name)
+		super().handle(exp_name, options)

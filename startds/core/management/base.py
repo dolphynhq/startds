@@ -87,6 +87,8 @@ class BaseCommand:
         parser = self.create_parser(argv[0], argv[1])
         parser.add_argument('args', nargs='*')  # catch-all
         parser.add_argument('-f', nargs='*')  # catch-all
+        parser.add_argument('--api', nargs='*')  # catch-all
+        parser.add_argument('--mode', nargs='*')  # catch-all
         options = parser.parse_args(argv[2:])
         cmd_options = vars(options)
 

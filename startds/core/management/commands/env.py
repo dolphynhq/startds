@@ -37,13 +37,17 @@ class Command(BaseCommand):
         '''
         command_req = f"pip install -r {path_to_requirements_file} --use-feature=2020-resolver"
 
-        command_airflow = f'''
-        cd {curr_dir}/{exp_name}/src/_orchestrate/airflow;
-        export AIRFLOW_HOME={curr_dir}/{exp_name}/src/_orchestrate/airflow ;
-        airflow initdb;
-        '''
+        if os.path.isdir(f'{curr_dir}/{exp_name}/src/_orchestrate'):
+            command_airflow = f'''
+            cd {curr_dir}/{exp_name}/src/_orchestrate/airflow;
+            export AIRFLOW_HOME={curr_dir}/{exp_name}/src/_orchestrate/airflow ;
+            airflow initdb;
+            '''
+        else:
+            command_airflow = ''
 
         try:
+            # subprocess.DEVNULL  subprocess.PIPE
             subprocess.run(f"{command0}; {command1}; {command2}; {commandpip}; {command_internal_1}; {command_internal_2}; {command_req}; {command3} {command_airflow}", shell=True)
         except Exception as e:
             print(e)

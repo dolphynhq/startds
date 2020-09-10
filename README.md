@@ -39,18 +39,39 @@ startds create <exp_name>
 
 - _create_
 ```sh
-startds create <exp_name>
+startds create <exp_name> [--api flask|fastapi|cortex|all(default)] [--mode eng|ds|all(default)]
 ```
 
-Creates a new experiment directory structure. where `exp_name` is the name of the new experiment you want to create. This will create a new folder named `exp_name` in the current folder.  
+Creates a new experiment directory structure. where `exp_name` is the name of the new experiment you want to create. This will create a new folder named `exp_name` in the current folder. 
+
+Options that can be provided with this command are 
+`--api` and `--mode`. 
+
+`--api` can only take on one of these values : `flask`, `fastapi`, `cortex`, `all` (default value is `all`).
+This will accordingly create boilerplate code for that specific api tool in your `_apis` folder.
+
+`--mode` can only take on one of these values : `eng`, `ds`, `all` (default value is `all`).
+This affects which folders are created in the `src` folder. 
+
+If `eng` is used as the mode, only folders specific to engineering operations will be created : `_apis`, `_apps`, `_orchestrate`, `_tests`.
+
+if `ds` is used as the mode, only folders specific to data science operations will be created : `clean`, `explore`, 
+`transform`, `train`.
+
+
+If no options are provided, the full experiment directory will be created. 
 &nbsp;
 
 - _env_
 ```sh
-startds env [optional] -f <path_to_requirements.txt>
+startds env  [-f path_to_requirements.txt]
 ```
 
-Initializes a virtual environment for the experiment with over 150 of the most commonly used data science libraries. Note, it installs `airflow` which is required in order to execute the dag.
+This command creates a virtual environment in the directory from where it is run. It is recommended to run this command from the home directory of the new experiment you created with ```startds create```.
+
+Option `-f` can be used to specify your custom `requirements.txt`. In the absence of this option, the default ```requirements.txt``` located at the root directory of your experiment will be used. You can also simply overwrite that default file. 
+
+The default env command initializes a virtual environment for the experiment with over 150 of the most commonly used data science libraries. Note, it installs `airflow` which is required in order to execute the dag.
 
 To start the new virtual environment created, run
 ```sh
@@ -101,6 +122,8 @@ The directory structure of your new project looks like this:
 |   │   └── models.md
 |   |
 |   ├── models             <- Trained and serialized models, model predictions, or model summaries
+|   |
+|   ├── notebooks          <- Folder to keep notebooks in. Import .py modules from src folder
 |   │
 |   ├── outputs            <- Generated analysis as HTML, PDF, LaTeX, etc.
 |   │   └── figures        <- Generated graphics and figures to be used in reporting
